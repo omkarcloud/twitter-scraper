@@ -1,0 +1,31 @@
+{
+ "relationship": {
+  "source": {
+   "id": 44196397,
+   "id_str": "44196397",
+   "screen_name": "elonmusk",
+   "following": true,
+   "followed_by": false,
+   "live_following": false,
+   "following_received": null,
+   "following_requested": null,
+   "notifications_enabled": null,
+   "can_dm": true,
+   "blocking": null,
+   "blocked_by": null,
+   "muting": null,
+   "want_retweets": null,
+   "all_replies": null,
+   "marked_spam": null
+  },
+  "target": {
+   "id": 783214,
+   "id_str": "783214",
+   "screen_name": "X",
+   "following": false,
+   "followed_by": true,
+   "following_received": null,
+   "following_requested": null
+  }
+ }
+}

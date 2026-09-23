@@ -1,0 +1,243 @@
+{
+ "query": {
+  "params": {
+   "granularity": "neighborhood",
+   "query": "paris",
+   "trim_place": false
+  },
+  "type": "search",
+  "url": "https://api.twitter.com/1.1/geo/search.json?query=paris"
+ },
+ "result": {
+  "places": [
+   {
+    "id": "09f6a7707f18e0b1",
+    "name": "Paris",
+    "full_name": "Paris, France",
+    "country": "France",
+    "country_code": "FR",
+    "url": "https://api.twitter.com/1.1/geo/id/09f6a7707f18e0b1.json",
+    "place_type": "city",
+    "attributes": {},
+    "bounding_box": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        2.2241006,
+        48.8155214
+       ],
+       [
+        2.2241006,
+        48.9021461
+       ],
+       [
+        2.4699053,
+        48.9021461
+       ],
+       [
+        2.4699053,
+        48.8155214
+       ]
+      ]
+     ]
+    },
+    "centroid": [
+     2.3200448684016433,
+     48.8587725
+    ],
+    "contained_within": [
+     {
+      "id": "6b9b96f5051ea00e",
+      "name": "Paris",
+      "full_name": "Paris",
+      "country": "France",
+      "country_code": "FR",
+      "url": "https://api.twitter.com/1.1/geo/id/6b9b96f5051ea00e.json",
+      "place_type": "admin",
+      "attributes": {},
+      "bounding_box": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          2.22410088273942,
+          48.8155599896432
+         ],
+         [
+          2.22410088273942,
+          48.9021460222041
+         ],
+         [
+          2.46990996027006,
+          48.9021460222041
+         ],
+         [
+          2.46990996027006,
+          48.8155599896432
+         ]
+        ]
+       ]
+      },
+      "centroid": [
+       2.3200626123275896,
+       48.85894849409125
+      ]
+     }
+    ]
+   },
+   {
+    "id": "3102b24b5af90698",
+    "name": "Paris",
+    "full_name": "Paris, Ile-de-France",
+    "country": "France",
+    "country_code": "FR",
+    "url": "https://api.twitter.com/1.1/geo/id/3102b24b5af90698.json",
+    "place_type": "admin",
+    "attributes": {},
+    "bounding_box": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        2.2241006,
+        48.8155214
+       ],
+       [
+        2.2241006,
+        48.9021461
+       ],
+       [
+        2.4699053,
+        48.9021461
+       ],
+       [
+        2.4699053,
+        48.8155214
+       ]
+      ]
+     ]
+    },
+    "centroid": [
+     2.3200448684016433,
+     48.8587725
+    ],
+    "contained_within": [
+     {
+      "id": "f9c4cad0af2337fa",
+      "name": "Ile-de-France",
+      "full_name": "Ile-de-France, France",
+      "country": "France",
+      "country_code": "FR",
+      "url": "https://api.twitter.com/1.1/geo/id/f9c4cad0af2337fa.json",
+      "place_type": "admin",
+      "attributes": {},
+      "bounding_box": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          1.4465224,
+          48.1204485
+         ],
+         [
+          1.4465224,
+          49.2339157
+         ],
+         [
+          3.5588048,
+          49.2339157
+         ],
+         [
+          3.5588048,
+          48.1204485
+         ]
+        ]
+       ]
+      },
+      "centroid": [
+       2.526880628937186,
+       48.677363
+      ]
+     }
+    ]
+   },
+   {
+    "id": "603d21ec6e733f7f",
+    "name": "Paris",
+    "full_name": "Paris, TX",
+    "country": "United States",
+    "country_code": "US",
+    "url": "https://api.twitter.com/1.1/geo/id/603d21ec6e733f7f.json",
+    "place_type": "city",
+    "attributes": {},
+    "bounding_box": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        -95.608956,
+        33.626723
+       ],
+       [
+        -95.608956,
+        33.701138
+       ],
+       [
+        -95.487483,
+        33.701138
+       ],
+       [
+        -95.487483,
+        33.626723
+       ]
+      ]
+     ]
+    },
+    "centroid": [
+     -95.53805214436943,
+     33.663874899999996
+    ],
+    "contained_within": [
+     {
+      "id": "212620dc7cd34699",
+      "name": "DALLAS-FT. WORTH",
+      "full_name": "DALLAS-FT. WORTH",
+      "country": "United States",
+      "country_code": "US",
+      "url": "https://api.twitter.com/1.1/geo/id/212620dc7cd34699.json",
+      "place_type": "admin",
+      "attributes": {},
+      "bounding_box": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          -98.924401,
+          31.413391
+         ],
+         [
+          -98.924401,
+          33.962002
+         ],
+         [
+          -94.73233,
+          33.962002
+         ],
+         [
+          -94.73233,
+          31.413391
+         ]
+        ]
+       ]
+      },
+      "centroid": [
+       -97.08552609323809,
+       32.6877135
+      ]
+     }
+    ]
+   }
+  ]
+ }
+}

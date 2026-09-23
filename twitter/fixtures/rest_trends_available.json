@@ -1,0 +1,74 @@
+[
+ {
+  "name": "Worldwide",
+  "placeType": {
+   "code": 19,
+   "name": "Supername"
+  },
+  "url": "http://where.yahooapis.com/v1/place/1",
+  "parentid": 0,
+  "country": "",
+  "woeid": 1,
+  "countryCode": null
+ },
+ {
+  "name": "Winnipeg",
+  "placeType": {
+   "code": 7,
+   "name": "Town"
+  },
+  "url": "http://where.yahooapis.com/v1/place/2972",
+  "parentid": 23424775,
+  "country": "Canada",
+  "woeid": 2972,
+  "countryCode": "CA"
+ },
+ {
+  "name": "London",
+  "placeType": {
+   "code": 7,
+   "name": "Town"
+  },
+  "url": "http://where.yahooapis.com/v1/place/44418",
+  "parentid": 23424975,
+  "country": "United Kingdom",
+  "woeid": 44418,
+  "countryCode": "GB"
+ },
+ {
+  "name": "New York",
+  "placeType": {
+   "code": 7,
+   "name": "Town"
+  },
+  "url": "http://where.yahooapis.com/v1/place/2459115",
+  "parentid": 23424977,
+  "country": "United States",
+  "woeid": 2459115,
+  "countryCode": "US"
+ },
+ {
+  "name": "India",
+  "placeType": {
+   "code": 12,
+   "name": "Country"
+  },
+  "url": "http://where.yahooapis.com/v1/place/23424848",
+  "parentid": 1,
+  "country": "India",
+  "woeid": 23424848,
+  "countryCode": "IN"
+ },
+ {
+  "name": "United States",
+  "placeType": {
+   "code": 12,
+   "name": "Country"
+  },
+  "url": "http://where.yahooapis.com/v1/place/23424977",
+  "parentid": 1,
+  "country": "United States",
+  "woeid": 23424977,
+  "countryCode": "US"
+ }
+]

@@ -1,0 +1,364 @@
+[
+ {
+  "trends": [
+   {
+    "name": "#RPETAbhiyaan",
+    "url": "http://twitter.com/search?q=%23RPETAbhiyaan",
+    "promoted_content": null,
+    "query": "%23RPETAbhiyaan",
+    "tweet_volume": null
+   },
+   {
+    "name": "#Nse_Stock_Under_Rs10",
+    "url": "http://twitter.com/search?q=%23Nse_Stock_Under_Rs10",
+    "promoted_content": null,
+    "query": "%23Nse_Stock_Under_Rs10",
+    "tweet_volume": null
+   },
+   {
+    "name": "#VVAANBookingsOpenNow",
+    "url": "http://twitter.com/search?q=%23VVAANBookingsOpenNow",
+    "promoted_content": null,
+    "query": "%23VVAANBookingsOpenNow",
+    "tweet_volume": null
+   },
+   {
+    "name": "#LetChdChoose",
+    "url": "http://twitter.com/search?q=%23LetChdChoose",
+    "promoted_content": null,
+    "query": "%23LetChdChoose",
+    "tweet_volume": null
+   },
+   {
+    "name": "#AfsaanaBanaayaAapne",
+    "url": "http://twitter.com/search?q=%23AfsaanaBanaayaAapne",
+    "promoted_content": null,
+    "query": "%23AfsaanaBanaayaAapne",
+    "tweet_volume": null
+   },
+   {
+    "name": "ज्ञानेश कुमार",
+    "url": "http://twitter.com/search?q=%22%E0%A4%9C%E0%A5%8D%E0%A4%9E%E0%A4%BE%E0%A4%A8%E0%A5%87%E0%A4%B6+%E0%A4%95%E0%A5%81%E0%A4%AE%E0%A4%BE%E0%A4%B0%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%9C%E0%A5%8D%E0%A4%9E%E0%A4%BE%E0%A4%A8%E0%A5%87%E0%A4%B6+%E0%A4%95%E0%A5%81%E0%A4%AE%E0%A4%BE%E0%A4%B0%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Himesh Reshammiya",
+    "url": "http://twitter.com/search?q=%22Himesh+Reshammiya%22",
+    "promoted_content": null,
+    "query": "%22Himesh+Reshammiya%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "चुनाव आयोग",
+    "url": "http://twitter.com/search?q=%22%E0%A4%9A%E0%A5%81%E0%A4%A8%E0%A4%BE%E0%A4%B5+%E0%A4%86%E0%A4%AF%E0%A5%8B%E0%A4%97%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%9A%E0%A5%81%E0%A4%A8%E0%A4%BE%E0%A4%B5+%E0%A4%86%E0%A4%AF%E0%A5%8B%E0%A4%97%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Gyanesh Kumar",
+    "url": "http://twitter.com/search?q=%22Gyanesh+Kumar%22",
+    "promoted_content": null,
+    "query": "%22Gyanesh+Kumar%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "SCOUT OP IS THE BOSS",
+    "url": "http://twitter.com/search?q=%22SCOUT+OP+IS+THE+BOSS%22",
+    "promoted_content": null,
+    "query": "%22SCOUT+OP+IS+THE+BOSS%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "मीराबाई चानू",
+    "url": "http://twitter.com/search?q=%22%E0%A4%AE%E0%A5%80%E0%A4%B0%E0%A4%BE%E0%A4%AC%E0%A4%BE%E0%A4%88+%E0%A4%9A%E0%A4%BE%E0%A4%A8%E0%A5%82%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%AE%E0%A5%80%E0%A4%B0%E0%A4%BE%E0%A4%AC%E0%A4%BE%E0%A4%88+%E0%A4%9A%E0%A4%BE%E0%A4%A8%E0%A5%82%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Indian Express",
+    "url": "http://twitter.com/search?q=%22Indian+Express%22",
+    "promoted_content": null,
+    "query": "%22Indian+Express%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "ईशान आनंद",
+    "url": "http://twitter.com/search?q=%22%E0%A4%88%E0%A4%B6%E0%A4%BE%E0%A4%A8+%E0%A4%86%E0%A4%A8%E0%A4%82%E0%A4%A6%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%88%E0%A4%B6%E0%A4%BE%E0%A4%A8+%E0%A4%86%E0%A4%A8%E0%A4%82%E0%A4%A6%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Election Commission",
+    "url": "http://twitter.com/search?q=%22Election+Commission%22",
+    "promoted_content": null,
+    "query": "%22Election+Commission%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "इंडियन एक्सप्रेस",
+    "url": "http://twitter.com/search?q=%22%E0%A4%87%E0%A4%82%E0%A4%A1%E0%A4%BF%E0%A4%AF%E0%A4%A8+%E0%A4%8F%E0%A4%95%E0%A5%8D%E0%A4%B8%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%B8%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%87%E0%A4%82%E0%A4%A1%E0%A4%BF%E0%A4%AF%E0%A4%A8+%E0%A4%8F%E0%A4%95%E0%A5%8D%E0%A4%B8%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A5%87%E0%A4%B8%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "500 Cr",
+    "url": "http://twitter.com/search?q=%22500+Cr%22",
+    "promoted_content": null,
+    "query": "%22500+Cr%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "NCLT",
+    "url": "http://twitter.com/search?q=NCLT",
+    "promoted_content": null,
+    "query": "NCLT",
+    "tweet_volume": null
+   },
+   {
+    "name": "आयुष्मान भारत",
+    "url": "http://twitter.com/search?q=%22%E0%A4%86%E0%A4%AF%E0%A5%81%E0%A4%B7%E0%A5%8D%E0%A4%AE%E0%A4%BE%E0%A4%A8+%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%86%E0%A4%AF%E0%A5%81%E0%A4%B7%E0%A5%8D%E0%A4%AE%E0%A4%BE%E0%A4%A8+%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Jay Singh Rathore",
+    "url": "http://twitter.com/search?q=%22Jay+Singh+Rathore%22",
+    "promoted_content": null,
+    "query": "%22Jay+Singh+Rathore%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Eastern Uttar Pradesh",
+    "url": "http://twitter.com/search?q=%22Eastern+Uttar+Pradesh%22",
+    "promoted_content": null,
+    "query": "%22Eastern+Uttar+Pradesh%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "B. 10000mAh",
+    "url": "http://twitter.com/search?q=%22B.+10000mAh%22",
+    "promoted_content": null,
+    "query": "%22B.+10000mAh%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Omkar",
+    "url": "http://twitter.com/search?q=Omkar",
+    "promoted_content": null,
+    "query": "Omkar",
+    "tweet_volume": null
+   },
+   {
+    "name": "Chandigarh",
+    "url": "http://twitter.com/search?q=Chandigarh",
+    "promoted_content": null,
+    "query": "Chandigarh",
+    "tweet_volume": null
+   },
+   {
+    "name": "Emraan Hashmi",
+    "url": "http://twitter.com/search?q=%22Emraan+Hashmi%22",
+    "promoted_content": null,
+    "query": "%22Emraan+Hashmi%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "रामधारी सिंह",
+    "url": "http://twitter.com/search?q=%22%E0%A4%B0%E0%A4%BE%E0%A4%AE%E0%A4%A7%E0%A4%BE%E0%A4%B0%E0%A5%80+%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%B0%E0%A4%BE%E0%A4%AE%E0%A4%A7%E0%A4%BE%E0%A4%B0%E0%A5%80+%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Innovation",
+    "url": "http://twitter.com/search?q=Innovation",
+    "promoted_content": null,
+    "query": "Innovation",
+    "tweet_volume": null
+   },
+   {
+    "name": "विवेक जोशी",
+    "url": "http://twitter.com/search?q=%22%E0%A4%B5%E0%A4%BF%E0%A4%B5%E0%A5%87%E0%A4%95+%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%B5%E0%A4%BF%E0%A4%B5%E0%A5%87%E0%A4%95+%E0%A4%9C%E0%A5%8B%E0%A4%B6%E0%A5%80%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "A. 100W",
+    "url": "http://twitter.com/search?q=%22A.+100W%22",
+    "promoted_content": null,
+    "query": "%22A.+100W%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "सुखबीर सिंह संधू",
+    "url": "http://twitter.com/search?q=%22%E0%A4%B8%E0%A5%81%E0%A4%96%E0%A4%AC%E0%A5%80%E0%A4%B0+%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9+%E0%A4%B8%E0%A4%82%E0%A4%A7%E0%A5%82%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%B8%E0%A5%81%E0%A4%96%E0%A4%AC%E0%A5%80%E0%A4%B0+%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9+%E0%A4%B8%E0%A4%82%E0%A4%A7%E0%A5%82%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "18.98 Cr",
+    "url": "http://twitter.com/search?q=%2218.98+Cr%22",
+    "promoted_content": null,
+    "query": "%2218.98+Cr%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Van Devi",
+    "url": "http://twitter.com/search?q=%22Van+Devi%22",
+    "promoted_content": null,
+    "query": "%22Van+Devi%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "C. Secret Sunrise",
+    "url": "http://twitter.com/search?q=%22C.+Secret+Sunrise%22",
+    "promoted_content": null,
+    "query": "%22C.+Secret+Sunrise%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "मुख्यमंत्री कृषक",
+    "url": "http://twitter.com/search?q=%22%E0%A4%AE%E0%A5%81%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A5%80+%E0%A4%95%E0%A5%83%E0%A4%B7%E0%A4%95%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%AE%E0%A5%81%E0%A4%96%E0%A5%8D%E0%A4%AF%E0%A4%AE%E0%A4%82%E0%A4%A4%E0%A5%8D%E0%A4%B0%E0%A5%80+%E0%A4%95%E0%A5%83%E0%A4%B7%E0%A4%95%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "स्वास्थ्य सुरक्षा",
+    "url": "http://twitter.com/search?q=%22%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A5%8D%E0%A4%AF+%E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%BE%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A5%8D%E0%A4%AF+%E0%A4%B8%E0%A5%81%E0%A4%B0%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "C. Purple Vibe",
+    "url": "http://twitter.com/search?q=%22C.+Purple+Vibe%22",
+    "promoted_content": null,
+    "query": "%22C.+Purple+Vibe%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "पंचायत समिति",
+    "url": "http://twitter.com/search?q=%22%E0%A4%AA%E0%A4%82%E0%A4%9A%E0%A4%BE%E0%A4%AF%E0%A4%A4+%E0%A4%B8%E0%A4%AE%E0%A4%BF%E0%A4%A4%E0%A4%BF%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%AA%E0%A4%82%E0%A4%9A%E0%A4%BE%E0%A4%AF%E0%A4%A4+%E0%A4%B8%E0%A4%AE%E0%A4%BF%E0%A4%A4%E0%A4%BF%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "B. Cloud Blue",
+    "url": "http://twitter.com/search?q=%22B.+Cloud+Blue%22",
+    "promoted_content": null,
+    "query": "%22B.+Cloud+Blue%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "B. Matcha Green",
+    "url": "http://twitter.com/search?q=%22B.+Matcha+Green%22",
+    "promoted_content": null,
+    "query": "%22B.+Matcha+Green%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Vivek Joshi",
+    "url": "http://twitter.com/search?q=%22Vivek+Joshi%22",
+    "promoted_content": null,
+    "query": "%22Vivek+Joshi%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "राष्ट्रीय आयुर्वेद",
+    "url": "http://twitter.com/search?q=%22%E0%A4%B0%E0%A4%BE%E0%A4%B7%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%80%E0%A4%AF+%E0%A4%86%E0%A4%AF%E0%A5%81%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A5%87%E0%A4%A6%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%B0%E0%A4%BE%E0%A4%B7%E0%A5%8D%E0%A4%9F%E0%A5%8D%E0%A4%B0%E0%A5%80%E0%A4%AF+%E0%A4%86%E0%A4%AF%E0%A5%81%E0%A4%B0%E0%A5%8D%E0%A4%B5%E0%A5%87%E0%A4%A6%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "4.84 CMP",
+    "url": "http://twitter.com/search?q=%224.84+CMP%22",
+    "promoted_content": null,
+    "query": "%224.84+CMP%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Candle Making",
+    "url": "http://twitter.com/search?q=%22Candle+Making%22",
+    "promoted_content": null,
+    "query": "%22Candle+Making%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "सिंह गिल",
+    "url": "http://twitter.com/search?q=%22%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9+%E0%A4%97%E0%A4%BF%E0%A4%B2%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%B8%E0%A4%BF%E0%A4%82%E0%A4%B9+%E0%A4%97%E0%A4%BF%E0%A4%B2%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Form 6",
+    "url": "http://twitter.com/search?q=%22Form+6%22",
+    "promoted_content": null,
+    "query": "%22Form+6%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "NSE-BSE",
+    "url": "http://twitter.com/search?q=NSE-BSE",
+    "promoted_content": null,
+    "query": "NSE-BSE",
+    "tweet_volume": null
+   },
+   {
+    "name": "PM-JAY",
+    "url": "http://twitter.com/search?q=PM-JAY",
+    "promoted_content": null,
+    "query": "PM-JAY",
+    "tweet_volume": null
+   },
+   {
+    "name": "Bhavtegh Singh Gill",
+    "url": "http://twitter.com/search?q=%22Bhavtegh+Singh+Gill%22",
+    "promoted_content": null,
+    "query": "%22Bhavtegh+Singh+Gill%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "परिनाज धालीवाल",
+    "url": "http://twitter.com/search?q=%22%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%A8%E0%A4%BE%E0%A4%9C+%E0%A4%A7%E0%A4%BE%E0%A4%B2%E0%A5%80%E0%A4%B5%E0%A4%BE%E0%A4%B2%22",
+    "promoted_content": null,
+    "query": "%22%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%A8%E0%A4%BE%E0%A4%9C+%E0%A4%A7%E0%A4%BE%E0%A4%B2%E0%A5%80%E0%A4%B5%E0%A4%BE%E0%A4%B2%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Anantjeet Singh Naruka",
+    "url": "http://twitter.com/search?q=%22Anantjeet+Singh+Naruka%22",
+    "promoted_content": null,
+    "query": "%22Anantjeet+Singh+Naruka%22",
+    "tweet_volume": null
+   },
+   {
+    "name": "Jay Meena",
+    "url": "http://twitter.com/search?q=%22Jay+Meena%22",
+    "promoted_content": null,
+    "query": "%22Jay+Meena%22",
+    "tweet_volume": null
+   }
+  ],
+  "as_of": "2026-09-23T09:04:39Z",
+  "created_at": "2026-09-22T18:27:46Z",
+  "locations": [
+   {
+    "name": "India",
+    "woeid": 23424848
+   }
+  ]
+ }
+]

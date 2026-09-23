@@ -1,0 +1,322 @@
+{
+ "data": {
+  "tweetResult": {
+   "result": {
+    "__typename": "Tweet",
+    "core": {
+     "user_results": {
+      "result": {
+       "__typename": "User",
+       "action_counts": {
+        "favorites_count": 15165
+       },
+       "affiliates_highlighted_label": {
+        "label": {
+         "badge": {
+          "url": "https://pbs.twimg.com/profile_images/1944799182205947904/EehOr9_b_bigger.png"
+         },
+         "description": "Shift4",
+         "url": {
+          "url": "https://twitter.com/Shift4",
+          "urlType": "DeepLink"
+         },
+         "userLabelDisplayType": "Badge",
+         "userLabelType": "BusinessLabel"
+        }
+       },
+       "avatar": {
+        "image_url": "https://pbs.twimg.com/profile_images/1485391315819020292/1_3QNpYj_normal.jpg"
+       },
+       "banner": {
+        "image_url": "https://pbs.twimg.com/profile_banners/2337692699/1664712882"
+       },
+       "core": {
+        "created_at": "Tue Feb 11 13:16:50 +0000 2014",
+        "name": "Mathias Føns",
+        "screen_name": "FonsDK"
+       },
+       "follow_request_sent": false,
+       "has_graduated_access": true,
+       "id": "VXNlcjoyMzM3NjkyNjk5",
+       "is_blue_verified": true,
+       "location": {
+        "location": "🇩🇰"
+       },
+       "media_permissions": {
+        "can_media_tag": false
+       },
+       "notifications_settings": {
+        "notifications_enabled": false
+       },
+       "pinned_items": {
+        "tweet_ids_str": [
+         "1669692555674394627"
+        ]
+       },
+       "possibly_sensitive": false,
+       "privacy": {
+        "protected": false
+       },
+       "profile_bio": {
+        "description": "Strategy @Shift4. Passionate about Space, EVs & Integrated Commerce. Opinions are my own, NFA",
+        "entities": {
+         "description": {},
+         "url": {
+          "urls": [
+           {
+            "display_url": "shift4.com",
+            "expanded_url": "https://www.shift4.com/",
+            "indices": [
+             0,
+             23
+            ],
+            "url": "https://t.co/OZobeyXbaW"
+           }
+          ]
+         }
+        }
+       },
+       "profile_description_language": "en",
+       "profile_image_shape": "Circle",
+       "profile_metadata": {
+        "profile_interstitial_type": ""
+       },
+       "profile_translation": {
+        "translator_type": "none"
+       },
+       "relationship_counts": {
+        "followers": 41048,
+        "following": 347
+       },
+       "relationship_perspectives": {
+        "blocked_by": false,
+        "blocking": false,
+        "followed_by": false,
+        "following": false,
+        "live_following": false,
+        "muting": false
+       },
+       "rest_id": "2337692699",
+       "super_follow_eligible": false,
+       "super_followed_by": false,
+       "super_following": false,
+       "tweet_counts": {
+        "media_tweets": 1076,
+        "tweets": 3597
+       },
+       "verification": {
+        "verified": false
+       },
+       "website": {
+        "url": "https://t.co/OZobeyXbaW"
+       }
+      }
+     }
+    },
+    "legacy": {
+     "bookmark_count": 827,
+     "bookmarked": false,
+     "conversation_id_str": "1671370010743263233",
+     "created_at": "Wed Jun 21 04:10:37 +0000 2023",
+     "display_text_range": [
+      0,
+      147
+     ],
+     "entities": {
+      "media": [
+       {
+        "additional_media_info": {
+         "monetizable": false
+        },
+        "display_url": "pic.x.com/r1LzZ5ovoD",
+        "expanded_url": "https://x.com/FonsDK/status/1671370010743263233/video/1",
+        "ext_media_availability": {
+         "status": "Available"
+        },
+        "id_str": "1671367628504309761",
+        "indices": [
+         148,
+         171
+        ],
+        "media_key": "13_1671367628504309761",
+        "media_results": {
+         "result": {
+          "media_key": "13_1671367628504309761"
+         }
+        },
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1671367628504309761/img/WoU2L8IXtzfmhlq9.jpg",
+        "original_info": {
+         "focus_rects": [],
+         "height": 1920,
+         "width": 1080
+        },
+        "sizes": {
+         "large": {
+          "h": 1920,
+          "resize": "fit",
+          "w": 1080
+         },
+         "medium": {
+          "h": 1200,
+          "resize": "fit",
+          "w": 675
+         },
+         "small": {
+          "h": 680,
+          "resize": "fit",
+          "w": 383
+         },
+         "thumb": {
+          "h": 150,
+          "resize": "crop",
+          "w": 150
+         }
+        },
+        "type": "video",
+        "url": "https://t.co/r1LzZ5ovoD",
+        "video_info": {
+         "aspect_ratio": [
+          9,
+          16
+         ],
+         "duration_millis": 8333,
+         "variants": [
+          {
+           "content_type": "application/x-mpegURL",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/pl/i5UdEvopIWEUX7CF.m3u8?tag=14"
+          },
+          {
+           "bitrate": 632000,
+           "content_type": "video/mp4",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/vid/320x568/GgI9Wk58dUudZiOo.mp4?tag=14"
+          },
+          {
+           "bitrate": 950000,
+           "content_type": "video/mp4",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/vid/480x852/1FeerZHX_A4YwBec.mp4?tag=14"
+          },
+          {
+           "bitrate": 2176000,
+           "content_type": "video/mp4",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/vid/720x1280/YSMJaf2mPv_41IO7.mp4?tag=14"
+          }
+         ]
+        }
+       }
+      ],
+      "user_mentions": [
+       {
+        "id_str": "44196397",
+        "indices": [
+         138,
+         147
+        ],
+        "name": "Elon Musk",
+        "screen_name": "elonmusk"
+       }
+      ]
+     },
+     "extended_entities": {
+      "media": [
+       {
+        "additional_media_info": {
+         "monetizable": false
+        },
+        "display_url": "pic.x.com/r1LzZ5ovoD",
+        "expanded_url": "https://x.com/FonsDK/status/1671370010743263233/video/1",
+        "ext_media_availability": {
+         "status": "Available"
+        },
+        "id_str": "1671367628504309761",
+        "indices": [
+         148,
+         171
+        ],
+        "media_key": "13_1671367628504309761",
+        "media_results": {
+         "result": {
+          "media_key": "13_1671367628504309761"
+         }
+        },
+        "media_url_https": "https://pbs.twimg.com/amplify_video_thumb/1671367628504309761/img/WoU2L8IXtzfmhlq9.jpg",
+        "original_info": {
+         "focus_rects": [],
+         "height": 1920,
+         "width": 1080
+        },
+        "sizes": {
+         "large": {
+          "h": 1920,
+          "resize": "fit",
+          "w": 1080
+         },
+         "medium": {
+          "h": 1200,
+          "resize": "fit",
+          "w": 675
+         },
+         "small": {
+          "h": 680,
+          "resize": "fit",
+          "w": 383
+         },
+         "thumb": {
+          "h": 150,
+          "resize": "crop",
+          "w": 150
+         }
+        },
+        "type": "video",
+        "url": "https://t.co/r1LzZ5ovoD",
+        "video_info": {
+         "aspect_ratio": [
+          9,
+          16
+         ],
+         "duration_millis": 8333,
+         "variants": [
+          {
+           "content_type": "application/x-mpegURL",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/pl/i5UdEvopIWEUX7CF.m3u8?tag=14"
+          },
+          {
+           "bitrate": 632000,
+           "content_type": "video/mp4",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/vid/320x568/GgI9Wk58dUudZiOo.mp4?tag=14"
+          },
+          {
+           "bitrate": 950000,
+           "content_type": "video/mp4",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/vid/480x852/1FeerZHX_A4YwBec.mp4?tag=14"
+          },
+          {
+           "bitrate": 2176000,
+           "content_type": "video/mp4",
+           "url": "https://video.twimg.com/amplify_video/1671367628504309761/vid/720x1280/YSMJaf2mPv_41IO7.mp4?tag=14"
+          }
+         ]
+        }
+       }
+      ]
+     },
+     "favorite_count": 16167,
+     "favorited": false,
+     "full_text": "Watching Twitter videos on my TV only took me a few seconds to set up🤯\n\nAn awesome feature, if you’re watching longer videos on X/Twitter @elonmusk https://t.co/r1LzZ5ovoD",
+     "id_str": "1671370010743263233",
+     "is_quote_status": false,
+     "lang": "en",
+     "possibly_sensitive": false,
+     "possibly_sensitive_editable": true,
+     "quote_count": 206,
+     "reply_count": 1274,
+     "retweet_count": 1938,
+     "retweeted": false,
+     "user_id_str": "2337692699"
+    },
+    "rest_id": "1671370010743263233",
+    "source": "<a href=\"http://twitter.com/#!/download/ipad\" rel=\"nofollow\">Twitter for iPad</a>",
+    "unmention_data": {}
+   }
+  }
+ }
+}

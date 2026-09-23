@@ -1,0 +1,37 @@
+[
+ {
+  "hashtag": "13周年大カーン謝祭",
+  "starting_timestamp_ms": 1783857600000,
+  "ending_timestamp_ms": 1791817140000,
+  "asset_url": "https://abs.twimg.com/hashflags/BF-16276_Hashmoji_monst_mmix_13rdAnniv/BF-16276_Hashmoji_monst_mmix_13rdAnniv.png",
+  "is_hashfetti_enabled": false
+ },
+ {
+  "hashtag": "7月7日はカルピスの誕生日",
+  "starting_timestamp_ms": 1782831600000,
+  "ending_timestamp_ms": 1790780340000,
+  "asset_url": "https://abs.twimg.com/hashflags/BF-16232_Asahi_calpis_Japan_2026_Emoji/BF-16232_Asahi_calpis_Japan_2026_Emoji.png",
+  "is_hashfetti_enabled": false
+ },
+ {
+  "hashtag": "AllforTX",
+  "starting_timestamp_ms": 1774411200000,
+  "ending_timestamp_ms": 1793505540000,
+  "asset_url": "https://abs.twimg.com/hashflags/TexasRangersMLB2026/TexasRangersMLB2026.png",
+  "is_hashfetti_enabled": false
+ },
+ {
+  "hashtag": "alwaysathletics",
+  "starting_timestamp_ms": 1774411200000,
+  "ending_timestamp_ms": 1793505540000,
+  "asset_url": "https://abs.twimg.com/hashflags/AthleticsMLB2026/AthleticsMLB2026.png",
+  "is_hashfetti_enabled": false
+ },
+ {
+  "hashtag": "ALWAYSFNATIC",
+  "starting_timestamp_ms": 1768622400000,
+  "ending_timestamp_ms": 1798689540000,
+  "asset_url": "https://abs.twimg.com/hashflags/FnaticGaming2026/FnaticGaming2026.png",
+  "is_hashfetti_enabled": false
+ }
+]
