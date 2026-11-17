@@ -49,6 +49,8 @@ import re
 from datetime import datetime, timezone
 
 from twitter import refs
+from scraper_utils.values import as_dict, as_list, bool_or_none, to_int
+from scraper_utils.text import stripped as text
 
 SITE = refs.SITE
 _TWITTER_DATE = "%a %b %d %H:%M:%S %z %Y"
@@ -58,40 +60,12 @@ _TCO_RE = re.compile(r"https?://t\.co/[A-Za-z0-9]+")
 
 # ---- value helpers ------------------------------------------------------------------
 
-def to_int(value):
-    try:
-        return int(value) if value not in (None, "") else None
-    except (TypeError, ValueError):
-        try:
-            return int(float(value))
-        except (TypeError, ValueError):
-            return None
-
 
 def to_float(value):
     try:
         return float(value) if value not in (None, "") else None
     except (TypeError, ValueError):
         return None
-
-
-def text(value):
-    if not isinstance(value, str):
-        return None
-    value = value.strip()
-    return value or None
-
-
-def bool_or_none(value):
-    return value if isinstance(value, bool) else None
-
-
-def as_dict(value):
-    return value if isinstance(value, dict) else {}
-
-
-def as_list(value):
-    return value if isinstance(value, list) else []
 
 
 def iso_datetime(value):

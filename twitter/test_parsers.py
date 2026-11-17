@@ -303,3 +303,62 @@ def test_trend_location_resolution(monkeypatch):
     assert T.resolve_location("winnipeg")["woeid"] == 2972
     with pytest.raises(Exception):
         T.resolve_location("atlantis")
+
+
+# ---- GraphQL feature flags (2026-10-23: views were null on every post) --------------
+
+class _Resp:
+    status_code = 200
+    text = '{"data": {"ok": true}}'
+
+    def json(self):
+        return {"data": {"ok": True}}
+
+
+def _capture_features(monkeypatch, operation):
+    from twitter import fetch as F
+    sent = []
+
+    class Sess:
+        def get(self, url, params=None, headers=None, timeout=None):
+            sent.append(json.loads(params["features"]))
+            return _Resp()
+
+    monkeypatch.setattr(F, "_session", lambda: Sess())
+    monkeypatch.setattr(F, "_guest_headers", lambda: {})
+    monkeypatch.setattr(F, "_retrying", lambda fn: fn())
+    monkeypatch.setattr(F, "_features", {})
+    monkeypatch.setattr(F, "_query_ids", {operation: "qid"})
+    assert F.graphql(operation, {"x": 1}) == {"ok": True}
+    return sent[0]
+
+
+@pytest.mark.parametrize("operation", ["TweetResultByRestId", "UserTweets", "UserHighlightsTweets",
+                                       "GenericTimelineById"])
+def test_post_operations_ask_for_view_counts(monkeypatch, operation):
+    feats = _capture_features(monkeypatch, operation)
+    assert feats.get("view_counts_everywhere_api_enabled") is True
+    assert feats.get("longform_notetweets_consumption_enabled") is True
+
+
+def test_profile_lookup_sends_no_post_flags(monkeypatch):
+    assert _capture_features(monkeypatch, "UserByScreenName") == {}
+
+
+def test_views_parse_from_graphql_and_stay_null_for_pre_2022_posts():
+    base = {"__typename": "Tweet", "rest_id": "1", "legacy": {"full_text": "hi", "id_str": "1"}}
+    counted = P.tweet(dict(base, views={"count": "212612", "state": "EnabledWithCount"}))
+    assert counted["stats"]["views"] == 212612
+    uncounted = P.tweet(dict(base, views={"state": "Enabled"}))
+    assert uncounted["stats"]["views"] is None
+
+
+def test_stream_results_reads_object_and_json_text_values():
+    # 2026-10-06 pages carried value:{data:...}; by 2026-10-23 value is the JSON text
+    obj = ('<script>$R[1]={kind:"GraphQLRequestStream.Completed",requestId:0,key:"k",'
+           'result:$R[2]={kind:"Result.Ok",value:{data:{user:{rest_id:"1"}}}}}</script>')
+    text = ('<script>$R[1]={kind:"GraphQLRequestStream.Completed",requestId:0,key:"k",'
+            'result:$R[2]={kind:"Result.Ok",value:"{\\"data\\":{\\"user\\":{\\"rest_id\\":\\"2\\"}}}"}}</script>')
+    assert relay.stream_results(obj) == [{"user": {"rest_id": "1"}}]
+    assert relay.stream_results(text) == [{"user": {"rest_id": "2"}}]
+    assert relay.page_records(text)                      # a page with only text values is no longer "not found"

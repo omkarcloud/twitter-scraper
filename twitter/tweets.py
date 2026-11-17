@@ -55,6 +55,23 @@ def _status_page(tweet_id, username=None):
     return relay.root(records), matches
 
 
+def _tweet_nodes(tree, out=None):
+    """Every full Tweet result in a (materialized) conversation tree, by
+    rest_id — 2026-10-06: the streamed page shares nothing by reference, so
+    a stub link (reply_to_results) is resolved against this index."""
+    out = {} if out is None else out
+    if isinstance(tree, dict):
+        if tree.get("__typename") == "Tweet" and tree.get("rest_id") and \
+                any(k in tree for k in ("core", "legacy", "details")):
+            out.setdefault(str(tree["rest_id"]), tree)
+        for value in tree.values():
+            _tweet_nodes(value, out)
+    elif isinstance(tree, list):
+        for value in tree:
+            _tweet_nodes(value, out)
+    return out
+
+
 def _status_root(tweet_id):
     try:
         root, matches = _status_page(tweet_id)
@@ -89,6 +106,8 @@ def thread(tweet):
     """The post in its thread: the parent chain above it (oldest first), the
     post itself and the author's own continuation below it."""
     root, matches, focal, focal_raw = _status_root(tweet)
+    conversation = root.get("threaded_conversation_with_injections_v2") or {}
+    on_page = _tweet_nodes(conversation)
     parents = []
     node = P.tweet_result(focal_raw) or {}
     seen = {focal.get("id")}
@@ -96,6 +115,19 @@ def thread(tweet):
         parent = P.tweet_result(node.get("reply_to_results"))
         if not parent or not parent.get("rest_id") or parent["rest_id"] in seen:
             break
+        if not any(k in parent for k in ("core", "legacy", "details")):
+            # 2026-10-06: the streamed page no longer shares records, so
+            # reply_to_results is an id-only stub; the parent itself is
+            # rendered in the conversation above the focal post (or, past
+            # what X renders, one guest GraphQL lookup away)
+            full = on_page.get(str(parent["rest_id"]))
+            if not full:
+                try:
+                    full = _result_by_id(parent["rest_id"])
+                except (TwitterNotFound, TwitterLoginWalled):
+                    full = None
+            if full and full.get("rest_id"):
+                parent = full
         seen.add(parent["rest_id"])
         parsed = P.tweet(parent)
         if parsed:

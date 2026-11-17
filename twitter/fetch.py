@@ -50,6 +50,7 @@ Failure taxonomy (scraper_errors, mapped to HTTP by route_glue):
                         transient guest-token refusal
 """
 import json
+import fastjson
 import os
 import re
 import sys
@@ -60,8 +61,10 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import config
+import egress
 from scraper_errors import BadRequest, Blocked, NotFound, UpstreamError
 from twitter import queries
+from scraper_utils import debug, fanout, retry, sessions
 
 SITE = "https://x.com"
 API = "https://x.com/i/api"
@@ -79,12 +82,13 @@ TIMEOUT = 30
 PAGE_TIMEOUT = 45
 FANOUT_WORKERS = 8
 GUEST_TOKEN_TTL = 2 * 3600
+GUEST_REMINT_PAUSE = 60     # a token refused before its first call is not replaced sooner than this
 QUERY_ID_REFRESH_MIN_INTERVAL = 600
 
 API_HEADERS = {
     "authorization": BEARER,
     "accept": "*/*",
-    "accept-language": "en-US,en;q=0.9",
+    "accept-language": egress.site_accept_language("twitter"),
     "content-type": "application/json",
     "referer": SITE + "/",
     "origin": SITE,
@@ -93,7 +97,7 @@ API_HEADERS = {
 }
 PAGE_HEADERS = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "accept-language": "en-US,en;q=0.9",
+    "accept-language": egress.site_accept_language("twitter"),
     "upgrade-insecure-requests": "1",
 }
 
@@ -134,25 +138,12 @@ def _proxy_for_new_session():
 
 
 def _session():
-    sess = getattr(_local, "session", None)
-    if sess is None:
-        from curl_cffi import requests as curl_requests
-        sess = curl_requests.Session(impersonate=IMPERSONATE)
-        proxy = _proxy_for_new_session()
-        if proxy:
-            sess.proxies = {"http": proxy, "https": proxy}
-        _local.session = sess
-    return sess
+    return sessions.thread_session(_local, lambda: sessions.curl_session(
+        IMPERSONATE, proxy_fn=_proxy_for_new_session))
 
 
 def _drop_session():
-    sess = getattr(_local, "session", None)
-    _local.session = None
-    if sess is not None:
-        try:
-            sess.close()
-        except Exception:
-            pass
+    sessions.drop(_local)
 
 
 def _note_block():
@@ -163,31 +154,15 @@ def _note_block():
 
 
 def dump_debug(name, text):
-    dbg = os.environ.get("TWITTER_DEBUG_DIR", "")
-    if dbg and text:
-        try:
-            os.makedirs(dbg, exist_ok=True)
-            with open(os.path.join(dbg, name + ".txt"), "w") as f:
-                f.write(text)
-        except OSError:
-            pass
+    debug.dump("TWITTER_DEBUG_DIR", name, text)
 
 
 def _retrying(fn):
-    last = None
-    for attempt in range(1, config.MAX_RETRIES + 1):
-        try:
-            return fn()
-        except TwitterUpstreamError as e:      # includes TwitterBlocked
-            last = e
-            _drop_session()
-        if attempt < config.MAX_RETRIES:
-            time.sleep(config.RETRY_BACKOFF * attempt)
-    raise last
+    return retry.run(fn, config, TwitterUpstreamError, lambda e: _drop_session())
 
 
 # ---- guest token -------------------------------------------------------------------
-_guest = {"token": None, "minted": 0.0}
+_guest = {"token": None, "minted": 0.0, "served": 0}   # served: calls X answered on this token
 _guest_lock = threading.Lock()
 
 
@@ -200,6 +175,14 @@ def guest_token(stale=None):
         fresh = token and time.time() - _guest["minted"] < GUEST_TOKEN_TTL
         if fresh and token != stale:
             return token
+        if stale and token == stale and not _guest["served"] and time.time() - _guest["minted"] < GUEST_REMINT_PAUSE:
+            # refused before it served a single call: X is limiting this IP,
+            # not the token, so another mint would be refused too. Block
+            # instead (new sessions move to the fallback exit); after
+            # GUEST_REMINT_PAUSE a re-mint is allowed again, so at most one
+            # mint per pause while X refuses.
+            _note_block()
+            raise TwitterBlocked("a fresh guest token was refused before its first call; not minting again yet")
         sess = _session()
         try:
             resp = sess.post(GUEST_ACTIVATE, headers={"authorization": BEARER, "accept": "*/*"},
@@ -217,7 +200,15 @@ def guest_token(stale=None):
             raise TwitterUpstreamError(f"guest token missing (HTTP {resp.status_code})")
         _guest["token"] = token
         _guest["minted"] = time.time()
+        _guest["served"] = 0
         return token
+
+
+def _served(headers):
+    """Count one answered call on the guest token in `headers`."""
+    with _guest_lock:
+        if _guest["token"] == headers.get("x-guest-token"):
+            _guest["served"] += 1
 
 
 def _guest_headers():
@@ -251,6 +242,28 @@ def _json_of(resp, label):
 
 
 # ---- GraphQL --------------------------------------------------------------------------
+# Optional read flags sent with every operation that returns posts. X only
+# asks for the REQUIRED ones ("features cannot be null", learned below), so
+# without these it silently leaves data out: no `views` object at all, so
+# stats.views was null on every post (customer report 2026-10-23; with the
+# flag the same post read 212,612). All are in X's own featureSwitches for
+# these operations (main.js); over 19 live posts this set changed nothing
+# but adding views. Posts from before Dec 2022 still have no count (X sends
+# views {"state": "Enabled"} with no number), so null stays right for them.
+TWEET_FEATURES = {
+    "view_counts_everywhere_api_enabled": True,
+    "longform_notetweets_consumption_enabled": True,
+    "responsive_web_edit_tweet_api_enabled": True,
+    "communities_web_enable_tweet_community_results_fetch": True,
+    "freedom_of_speech_not_reach_fetch_enabled": True,
+    "standardized_nudges_misinfo": True,
+    "articles_preview_enabled": True,
+    "responsive_web_twitter_article_tweet_consumption_enabled": True,
+    "tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled": True,
+    "creator_subscriptions_tweet_preview_api_enabled": True,
+}
+TWEET_OPERATIONS = {"TweetResultByRestId", "UserTweets", "UserHighlightsTweets", "GenericTimelineById"}
+
 _features = {}          # operation -> features learned from "cannot be null" errors
 _features_lock = threading.Lock()
 _query_ids = dict(queries.QUERY_IDS)
@@ -313,14 +326,15 @@ def _learn_features(operation, messages):
 
 def graphql(operation, variables, features=None, label=None):
     """GET one persisted GraphQL query with the guest token -> the response
-    `data` dict. Guests are fine with an empty `features` map (verified);
-    any "features cannot be null" answer is learned and retried."""
+    `data` dict. Operations that return posts always carry TWEET_FEATURES
+    (an empty map is accepted but drops optional data such as views); any
+    "features cannot be null" answer is learned and retried."""
     label = label or operation
 
     def once():
         sess = _session()
         headers = _guest_headers()
-        feats = {}
+        feats = dict(TWEET_FEATURES) if operation in TWEET_OPERATIONS else {}
         with _features_lock:
             feats.update(_features.get(operation) or {})
         if features:
@@ -334,6 +348,17 @@ def graphql(operation, variables, features=None, label=None):
             except Exception as e:
                 raise TwitterUpstreamError(f"{label}: request failed: {type(e).__name__}: {e}")
             status = resp.status_code
+            if status in (401, 403, 429):
+                # Checked BEFORE the body is parsed: X answers a spent guest
+                # token (150 lookups / 15 min per token) with a PLAIN-TEXT 429
+                # "Rate limit exceeded", which _json_of reads as an HTML block.
+                # Until 2026-10-26 that skipped this branch, so the call was
+                # retried on the same spent token and failed (half of a
+                # customer's users/profiles burst). A fresh token from the
+                # same IP gets a fresh 150.
+                headers["x-guest-token"] = guest_token(stale=headers.get("x-guest-token"))
+                continue
+            _served(headers)
             body = _json_of(resp, label) if (resp.text or "").strip() else None
             messages = _error_messages(body)
             if status == 400 and _learn_features(operation, messages):
@@ -347,9 +372,6 @@ def graphql(operation, variables, features=None, label=None):
                     raise TwitterUpstreamError(f"{label}: query id rejected and no newer bundle found")
                 # an EMPTY 404 is X's login wall for guests
                 raise TwitterLoginWalled(f"{label}: X no longer serves this to a guest (404)")
-            if status in (401, 403, 429):
-                headers["x-guest-token"] = guest_token(stale=headers.get("x-guest-token"))
-                continue
             if status >= 500:
                 raise TwitterUpstreamError(f"{label}: HTTP {status}")
             if status != 200:
@@ -390,6 +412,7 @@ def rest(path, params=None, label=None):
             if status in (401, 403, 429):
                 headers["x-guest-token"] = guest_token(stale=headers.get("x-guest-token"))
                 continue
+            _served(headers)
             body = _json_of(resp, label)
             messages = _error_messages(body)
             if status == 400 or status == 422:
@@ -477,7 +500,7 @@ def syndication_list(list_id):
         dump_debug("synd_list", resp.text)
         raise TwitterUpstreamError(f"list {list_id}: embed page carried no data")
     try:
-        data = json.loads(match.group(1))
+        data = fastjson.loads(match.group(1))
     except ValueError:
         raise TwitterUpstreamError(f"list {list_id}: embed data unreadable")
     props = ((data or {}).get("props") or {}).get("pageProps") or {}
@@ -494,30 +517,13 @@ def oembed(url):
 # ---- fan-out --------------------------------------------------------------------------------
 
 def run_parallel(fns):
-    if not fns:
-        return []
-    if len(fns) == 1:
-        return [fns[0]()]
-    with ThreadPoolExecutor(max_workers=min(FANOUT_WORKERS, len(fns))) as ex:
-        futures = [ex.submit(fn) for fn in fns]
-        return [f.result() for f in futures]
+    return fanout.per_call(fns, FANOUT_WORKERS)
 
 
 def gather(mapping):
     """{key: callable} in parallel -> {key: result}; a NotFound / BadRequest
     for one key yields None instead of failing the set."""
-    keys = list(mapping)
-
-    def guarded(fn):
-        def run():
-            try:
-                return fn()
-            except (TwitterNotFound, TwitterBadRequest):
-                return None
-        return run
-
-    results = run_parallel([guarded(mapping[k]) for k in keys])
-    return dict(zip(keys, results))
+    return fanout.gather(run_parallel, mapping, (TwitterNotFound, TwitterBadRequest))
 
 
 if __name__ == "__main__":

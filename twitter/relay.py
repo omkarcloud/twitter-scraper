@@ -27,7 +27,17 @@ response object (user.core.screen_name, tweet.legacy.full_text, ...), which
 lets the same normalizers serve the SSR pages and the GraphQL endpoints.
 The router's loader data (`$_TSR.router=...` with the same `$R[n]=`
 notation) is read by `router_matches(html)`.
+
+2026-10-06: x-web dropped the inlined normalized store. The same pages now
+stream one `{kind:"GraphQLRequestStream.Completed", ..., result:{kind:
+"Result.Ok", value:{data:{...}}}}` event per page query (same `$R[n]=`
+literal, but the response tree is plain and de-normalized: no __ref links,
+and a tweet referenced twice — e.g. reply_to_results — is an id-only stub
+the second time). `stream_results(html)` reads those; `page_records`
+deep-merges them into a synthetic client:root so `root()` is unchanged for
+callers. The router literal is untouched.
 """
+import fastjson
 import re
 
 _WS = " \t\r\n"
@@ -219,11 +229,63 @@ def parse_literal(text, pos=0, slots=None):
 _SCRIPT_RE = re.compile(r"<script[^>]*>(.*?)</script>", re.S)
 _RECORDS_MARK = "relayRecords:"
 _ROUTER_MARK = "$_TSR.router="
+_STREAM_MARK = 'kind:"GraphQLRequestStream.Completed"'
+
+
+def _deep_merge(base, extra):
+    """Recursive dict merge (later wins per leaf; lists are replaced)."""
+    out = dict(base)
+    for key, value in extra.items():
+        if isinstance(value, dict) and isinstance(out.get(key), dict):
+            out[key] = _deep_merge(out[key], value)
+        else:
+            out[key] = value
+    return out
+
+
+def stream_results(html):
+    """2026-10-06: x-web no longer inlines the normalized Relay store
+    (`relayRecords:`); each page query now arrives as a streamed event
+    `{kind:"GraphQLRequestStream.Completed",requestId,key,result:{kind:
+    "Result.Ok",value:{data:{...}}}}` in the same `$R[n]=` notation, with
+    the response tree already de-normalized (no __ref links). Returns the
+    `data` dict of every completed query, in page order."""
+    out = []
+    for script in _SCRIPT_RE.findall(html):
+        start = 0
+        while True:
+            idx = script.find(_STREAM_MARK, start)
+            if idx < 0:
+                break
+            # the marker sits inside `$R[n]={kind:...}`: parse from that brace
+            open_brace = script.rfind("{", 0, idx)
+            try:
+                event, end = parse_literal(script, open_brace)
+            except (ValueError, IndexError):
+                start = idx + len(_STREAM_MARK)
+                continue
+            start = max(end, idx + len(_STREAM_MARK))
+            result = event.get("result") if isinstance(event, dict) else None
+            value = result.get("value") if isinstance(result, dict) else None
+            if isinstance(value, str):
+                # by 2026-10-23 the value arrives as the response's JSON
+                # TEXT (`value:"{\"data\":...}"`), no longer an object
+                try:
+                    value = fastjson.loads(value)
+                except ValueError:
+                    value = None
+            data = value.get("data") if isinstance(value, dict) else None
+            if isinstance(data, dict) and data:
+                out.append(data)
+    return out
 
 
 def page_records(html):
     """Every Relay record in a page's inline scripts, merged into one
-    {record id: record dict} store (later chunks win)."""
+    {record id: record dict} store (later chunks win). Pages that carry the
+    streamed de-normalized responses instead (2026-10-06, see
+    stream_results) get a synthetic client:root holding their merged
+    `data` trees, so `root()` reads the same either way."""
     records = {}
     slots = {}
     for script in _SCRIPT_RE.findall(html):
@@ -247,6 +309,14 @@ def page_records(html):
                     else:
                         records[rid] = rec
             start = end
+    if not records:
+        # several queries answer the same root field (NASA's page: a light
+        # profile query, then the one carrying the timeline) -> deep-merge
+        root_data = {}
+        for data in stream_results(html):
+            root_data = _deep_merge(root_data, data)
+        if root_data:
+            records["client:root"] = dict(root_data, __id="client:root", __typename="__Root")
     return records
 
 
